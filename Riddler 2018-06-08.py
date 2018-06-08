@@ -17,9 +17,10 @@ def trans(word, digits, wrong=None):
         r = r[:i] + '0' + r[i+1:]
     return int(r)
 
-def check():
+def check(issum=False):
     """Uses global variables because I didn't want to pass 5 parameters."""
     rem = total - add1 - add2
+    if issum: rem = -rem
     if rem % 10**w == 0 and 0 < rem // 10**w < 10:
         print("...Found one! Place 10**" + str(w) + " should be", rem)
         print(letters)
@@ -51,7 +52,7 @@ for w in range(len(s)):
         add1 = trans(a1, p)
         add2 = trans(a2, p)
         total = trans(s, p, w)
-        check()
+        check(issum=True)
 
 ##  Output:
 ##
@@ -65,5 +66,10 @@ for w in range(len(s)):
 ##  ...Found one! Place 10**1 should be 50
 ##  ytbedmkhrp
 ##  6951324708 -> 695513243 + 673596603 = 1369109896
+##  <snip>
+##  Assuming the 10**1's place in s is wrong.
+##  ...Found one! Place 10**1 should be 70
+##  ytbedmkhrp
+##  6951324708 -> 695513243 + 673596633 = 1369109806
 ##  <snip>
 
